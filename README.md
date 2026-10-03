@@ -107,11 +107,29 @@ Start the API:
 How to Run Tests
     python -m pytest tests/ -v
 
-    The tests cover the transaction endpoint, the budget summary endpoint, and the budget calculation logic. All tests use the mock data, so no external services or credentials are required.
+    The tests cover the root endpoint, the transaction endpoint, the budget summary endpoint, the structured 404 error handler, and the budget calculation logic. All tests use the mock data, so no external services or credentials are required.
 
 
 
 API Reference
+
+    GET /
+        Returns service metadata and a list of available endpoints.
+        Response example:
+        {
+        "name": "Open Banking Budget API",
+        "version": "1.0.0",
+        "description": "Mock open banking transaction and budgeting API for the European market.",
+        "endpoints": [
+            "/",
+            "/transactions",
+            "/budget/summary",
+            "/health",
+            "/docs",
+            "/redoc",
+            "/openapi.json"
+        ]
+        }
 
     GET /transactions
         Returns a JSON array of transaction objects.
@@ -146,6 +164,23 @@ API Reference
         Returns a simple health check response.
         Response example:
         {"status": "ok"}
+
+    Error Responses
+        When a request is made to an undefined path, the API returns a structured JSON error response instead of the default FastAPI error body.
+        Response example for `GET /unknown`:
+        {
+        "error": "Not Found",
+        "path": "/unknown",
+        "available_endpoints": [
+            "/",
+            "/transactions",
+            "/budget/summary",
+            "/health",
+            "/docs",
+            "/redoc",
+            "/openapi.json"
+        ]
+        }
 
 
 
