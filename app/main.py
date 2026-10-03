@@ -1,8 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from fastapi.exceptions import HTTPException
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from typing import List
-
 from app.models import Transaction, BudgetSummary
 from app.mock_data import MOCK_TRANSACTIONS
 from app.budget import calculate_budget_summary
@@ -51,8 +50,8 @@ def health_check():
     return {"status": "ok"}
 
 
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
     return JSONResponse(
         status_code=exc.status_code,
         content={
