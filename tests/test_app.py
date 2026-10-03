@@ -11,6 +11,21 @@ def test_health_check():
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
 
+def test_root_endpoint():
+    response = client.get("/")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["name"] == "Open Banking Budget API"
+    assert "/transactions" in data["endpoints"]
+
+def test_unknown_path_returns_structured_error():
+    response = client.get("/does-not-exist")
+    assert response.status_code == 404
+    data = response.json()
+    assert data["error"] == "Not Found"
+    assert data["path"] == "/does-not-exist"
+    assert "/transactions" in data["available_endpoints"]
+
 def test_get_transactions():
     response = client.get("/transactions")
     assert response.status_code == 200
