@@ -71,6 +71,7 @@ Project Structure
     |_ render.yaml
     |_ vercel.json
     |_ README.md
+    |_ LICENSE
 
 
 
