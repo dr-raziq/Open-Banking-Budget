@@ -72,6 +72,7 @@ Project Structure
     |_ vercel.json
     |_ README.md
     |_ LICENSE
+    |_ .gitignore
 
 
 
