@@ -3,7 +3,7 @@ Open Banking Budget API
 
 
 Overview
-    The Open Banking Budget API is a Python FastAPI application that demonstrates how transaction data from European open banking providers can be aggregated into a simple budgeting summary. The application uses mock transaction data, so it runs without external API credentials. It includes tests, documentation, and deployment configuration for Render and Vercel.
+    The Open Banking Budget API is a Python FastAPI application that demonstrates how transaction data from Open banking providers can be aggregated into a simple budgeting summary. The application uses mock transaction data, so it runs without external API credentials. It includes tests, documentation, and deployment configuration for Render and Vercel.
     The project is structured as a reference implementation for PSD2-aligned Account Information Services (AIS) in the European market. It does not process real bank data and does not implement payment initiation.
 
 
